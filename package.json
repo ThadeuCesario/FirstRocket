@@ -1,0 +1,7 @@
+{
+  "name": "FirstRocket",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/ThadeuCesario/FirstRocket.git",
+  "license": "MIT"
+}

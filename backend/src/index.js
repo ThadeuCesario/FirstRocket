@@ -1,6 +1,8 @@
 const express = require('express');
+const { json } = require('express');
 
 const app = express();
+app.use(express.json());
 
 /**
  * Métodos HTTP:
@@ -19,11 +21,24 @@ const app = express();
   * Tipos de parâmetros:
   * 
   * Query Params: Filtros e paginação
-  * Route Params:
-  * Request Params:
+  * Route Params: Identificar recursos na hora de atualizar ou deletar
+  * Request Params: Conteúdo na hora de criar ou editar um recurso. (JSON)
+  * 
+  * 
+  * Para acessarmos os query params, basta utilizarmos o "request.query".
   */
 
+  /**
+   * Precisamos utilizar o "app.use(express.json());". Antes de nossas rotas porque no Node o funcionamento é feito
+   * de formar linear. 
+   * Caso contrário vamos ter sempre um request.body retornando undefined.
+   * 
+   */
+
 app.get('/projects', (request, response) => {
+    const {title} = request.query;
+    console.log(title);
+
     return response.json([
         'Projeto 1',
         'Projeto 2',
@@ -31,6 +46,10 @@ app.get('/projects', (request, response) => {
 });
 
 app.post('/projects', (request, response) => {
+    const body = request.body;
+
+    console.log("verificando o body", body);
+
     return response.json([
         'Projeto 1',
         'Projeto 2',
@@ -39,6 +58,10 @@ app.post('/projects', (request, response) => {
 });
 
 app.put('/projects/:id', (request, response) => {
+    const params = request.params;
+
+    console.log(params);
+
     return response.json([
         'Projeto 4',
         'Projeto 2',

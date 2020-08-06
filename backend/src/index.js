@@ -12,7 +12,16 @@ const app = express();
  * 
  * Não há problema de utilizar rotas com o mesmo recurso porém com o métodos variando.
  * Veja abaixo que tenho duas rotas com o recurso de projects. Porém os métodos são diferentes.
+ * 
  */
+
+ /**
+  * Tipos de parâmetros:
+  * 
+  * Query Params: Filtros e paginação
+  * Route Params:
+  * Request Params:
+  */
 
 app.get('/projects', (request, response) => {
     return response.json([

@@ -40,10 +40,11 @@ app.use(express.json());
 const projects = []; //Vamos armazenar nossos dados na memória. Claro que isso não deve ser feito em produção.
 
 app.get('/projects', (request, response) => {
-    // const {title} = request.query;
-    // console.log(title);
+    const {title} = request.query;
 
-    return response.json(projects);
+    const results = title ? projects.filter(project => project.title.includes(title)) : projects;
+
+    return response.json(results);
 });
 
 app.post('/projects', (request, response) => {

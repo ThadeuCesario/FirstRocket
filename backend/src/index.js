@@ -1,5 +1,5 @@
 const express = require('express');
-const { json } = require('express');
+const {uuid} = require('uuidv4');
 
 const app = express();
 app.use(express.json());
@@ -33,22 +33,27 @@ app.use(express.json());
    * de formar linear. 
    * Caso contrário vamos ter sempre um request.body retornando undefined.
    * 
+   * 
+   * Estamos utilizando o uuidv4 para criarmos id de forma dinâmica para nosso projeto.
    */
 
-app.get('/projects', (request, response) => {
-    const {title} = request.query;
-    console.log(title);
+const projects = []; //Vamos armazenar nossos dados na memória. Claro que isso não deve ser feito em produção.
 
-    return response.json([
-        'Projeto 1',
-        'Projeto 2',
-    ]);
+app.get('/projects', (request, response) => {
+    // const {title} = request.query;
+    // console.log(title);
+
+    return response.json(projects);
 });
 
 app.post('/projects', (request, response) => {
-    const body = request.body;
+    const {title, owner} = request.body;
 
-    console.log("verificando o body", body);
+    let project = {
+        id: uuid(),
+        title,
+        owner,
+    }
 
     return response.json([
         'Projeto 1',

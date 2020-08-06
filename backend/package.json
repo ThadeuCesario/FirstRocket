@@ -4,11 +4,12 @@
   "main": "src/index.js",
   "repository": "https://github.com/ThadeuCesario/FirstRocket.git",
   "license": "MIT",
-  "scripts":{
+  "scripts": {
     "dev": "nodemon src/index.js"
   },
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "uuidv4": "^6.2.2"
   },
   "devDependencies": {
     "nodemon": "^2.0.4"

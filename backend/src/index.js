@@ -37,6 +37,13 @@ app.use(express.json());
    * Estamos utilizando o uuidv4 para criarmos id de forma dinâmica para nosso projeto.
    */
 
+   /**
+    * Middleware:
+    * 
+    * 
+    * 
+    */
+
 const projects = []; //Vamos armazenar nossos dados na memória. Claro que isso não deve ser feito em produção.
 
 app.get('/projects', (request, response) => {

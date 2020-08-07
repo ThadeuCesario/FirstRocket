@@ -40,9 +40,24 @@ app.use(express.json());
    /*
     * Middlewares
     * Interceptador de requisições, podendo interromper totalmente a requisicão ou pode alterar dados da requisição.
+    * Middlewares que não são rotas recebem um terceiro parâmetro que são o next.
+    * Vamos utilizar um middleware quando desejamos que um trecho de código seja disparado de forma automática,
+    * em uma ou mais rotas de nossa aplicação.
     */
 
 const projects = []; //Vamos armazenar nossos dados na memória. Claro que isso não deve ser feito em produção.
+
+function logRequests(request, response, next){
+    const {method, url} = request;
+
+    const loglabel = `[${method.toUpperCase()}] ${url}`;
+
+    console.log(loglabel);
+
+    return next();
+}
+
+app.use(logRequests);
 
 app.get('/projects', (request, response) => {
     const {title} = request.query;

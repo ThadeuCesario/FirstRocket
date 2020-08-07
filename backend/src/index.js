@@ -53,6 +53,8 @@ function logRequests(request, response, next){
     const loglabel = `[${method.toUpperCase()}] ${url}`;
 
     console.log(loglabel);
+
+    return next();
 }
 
 app.use(logRequests);

@@ -43,6 +43,10 @@ app.use(express.json());
     * Middlewares que não são rotas recebem um terceiro parâmetro que são o next.
     * Vamos utilizar um middleware quando desejamos que um trecho de código seja disparado de forma automática,
     * em uma ou mais rotas de nossa aplicação.
+    * 
+    * Lembre-se de que caso você queira criar um interceptador (middleware), porém que não impactará na próxima
+    * requisição é fundamental que você utilize o next().
+    * Veja que utilizei o return next();
     */
 
 const projects = []; //Vamos armazenar nossos dados na memória. Claro que isso não deve ser feito em produção.

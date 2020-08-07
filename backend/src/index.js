@@ -48,8 +48,14 @@ app.use(express.json());
 const projects = []; //Vamos armazenar nossos dados na memória. Claro que isso não deve ser feito em produção.
 
 function logRequests(request, response, next){
+    const {method, url} = request;
 
+    const loglabel = `[${method.toUpperCase()}] ${url}`;
+
+    console.log(loglabel);
 }
+
+app.use(logRequests);
 
 app.get('/projects', (request, response) => {
     const {title} = request.query;

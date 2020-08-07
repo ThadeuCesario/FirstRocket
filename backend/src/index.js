@@ -1,5 +1,5 @@
 const express = require('express');
-const {uuid} = require('uuidv4');
+const {uuid, isUuid} = require('uuidv4');
 
 const app = express();
 app.use(express.json());
@@ -51,6 +51,8 @@ app.use(express.json());
 
 const projects = []; //Vamos armazenar nossos dados na memória. Claro que isso não deve ser feito em produção.
 
+
+
 function logRequests(request, response, next){
     const {method, url} = request;
 
@@ -63,7 +65,18 @@ function logRequests(request, response, next){
     console.timeEnd(loglabel);
 }
 
+function validateProjectId(request, response, next){
+    const {id} = request.params;
+
+    if(!isUuid(id)){
+        return response.status(400).json({error: 'Invalid Project ID.'});
+    }
+
+    return next();
+}
+
 app.use(logRequests);
+app.use("/projects/:id", validateProjectId);
 
 app.get('/projects', (request, response) => {
     const {title} = request.query;

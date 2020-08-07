@@ -1,5 +1,5 @@
 const express = require('express');
-const {uuid} = require('uuidv4');
+const {uuid, isUuid} = require('uuidv4');
 
 const app = express();
 app.use(express.json());
@@ -43,21 +43,40 @@ app.use(express.json());
     * Middlewares que não são rotas recebem um terceiro parâmetro que são o next.
     * Vamos utilizar um middleware quando desejamos que um trecho de código seja disparado de forma automática,
     * em uma ou mais rotas de nossa aplicação.
+    * 
+    * Lembre-se de que caso você queira criar um interceptador (middleware), porém que não impactará na próxima
+    * requisição é fundamental que você utilize o next().
+    * Veja que utilizei o return next();
     */
 
 const projects = []; //Vamos armazenar nossos dados na memória. Claro que isso não deve ser feito em produção.
+
+
 
 function logRequests(request, response, next){
     const {method, url} = request;
 
     const loglabel = `[${method.toUpperCase()}] ${url}`;
 
-    console.log(loglabel);
+    console.time(loglabel);
+
+    next();
+
+    console.timeEnd(loglabel);
+}
+
+function validateProjectId(request, response, next){
+    const {id} = request.params;
+
+    if(!isUuid(id)){
+        return response.status(400).json({error: 'Invalid Project ID.'});
+    }
 
     return next();
 }
 
 app.use(logRequests);
+app.use("/projects/:id", validateProjectId);
 
 app.get('/projects', (request, response) => {
     const {title} = request.query;

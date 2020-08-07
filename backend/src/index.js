@@ -41,7 +41,6 @@ app.use(express.json());
     * Middleware:
     * Interceptador de requisições, podendo interromper totalmente a requisicão ou pode alterar dados da requisição.
     * 
-    * 
     */
 
 const projects = []; //Vamos armazenar nossos dados na memória. Claro que isso não deve ser feito em produção.

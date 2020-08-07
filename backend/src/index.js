@@ -38,7 +38,7 @@ app.use(express.json());
    */
 
    /*
-    * Middlewares:
+    * Middlewares
     * Interceptador de requisições, podendo interromper totalmente a requisicão ou pode alterar dados da requisição.
     */
 

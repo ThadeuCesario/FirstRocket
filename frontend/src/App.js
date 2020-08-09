@@ -9,6 +9,10 @@ import Header from './components/Header';
  * Propriedade
  * Estado e imutabilidade
  * 
+ * 
+ * Obs.: useState, retorna um array com duas posições.
+ * Sendo a primeira posição possui o valor inicial.
+ * A segunda posição é uma função para atualizarmos esse valor.
  */
 
 

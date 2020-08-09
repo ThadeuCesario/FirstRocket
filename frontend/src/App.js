@@ -15,7 +15,7 @@ import Header from './components/Header';
 const App = _ => {
     return(
         <>
-            <Header />
+            <Header title={'FirstRocket'}/>
         </>
     );
 }

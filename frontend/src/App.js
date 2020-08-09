@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useLayoutEffect } from 'react';
 
 import Header from './components/Header';
 
@@ -15,7 +15,11 @@ import Header from './components/Header';
 const App = _ => {
     return(
         <>
-            <Header title={'FirstRocket'}/>
+            <Header title={'FirstRocket'}>
+                <ul>
+                    <li>Projeto</li>
+                </ul>
+            </Header>
         </>
     );
 }

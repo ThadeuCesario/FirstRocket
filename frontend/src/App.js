@@ -1,4 +1,4 @@
-import React, { useLayoutEffect } from 'react';
+import React, { useState } from 'react';
 
 import Header from './components/Header';
 
@@ -7,19 +7,28 @@ import Header from './components/Header';
  * 
  * Componente
  * Propriedade
- * Estado
+ * Estado e imutabilidade
  * 
  */
 
 
 const App = _ => {
+
+    const [projects, setProjects] = useState(["Desenvolvimento de App","Front-end web"]);
+
+    const handleProjects = () => {
+        setProjects([...projects, `Novo Projeto ${Date.now()}`]);
+    }
+
     return(
         <>
-            <Header title={'FirstRocket'}>
-                <ul>
-                    <li>Projeto</li>
-                </ul>
-            </Header>
+            <Header title={'FirstRocket'} />
+
+            {
+                projects.length > 0 && projects.map((project, index) => <div key={index}>{project}</div>)
+            }
+
+            <button type='button' onClick={handleProjects}>Adicionar</button>
         </>
     );
 }

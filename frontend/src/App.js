@@ -25,7 +25,6 @@ const App = _ => {
     const handleProjects = () => {
         setProjects([...projects, `Novo Projeto ${Date.now()}`]);
     }
-
     return(
         <>
             <Header title={'FirstRocket'} />

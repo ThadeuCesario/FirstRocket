@@ -21,7 +21,6 @@ import backgroundImage from './assets/backgroundImage.jpeg';
 const App = _ => {
 
     const [projects, setProjects] = useState(["Desenvolvimento de App","Front-end web"]);
-
     const handleProjects = () => {
         setProjects([...projects, `Novo Projeto ${Date.now()}`]);
     }

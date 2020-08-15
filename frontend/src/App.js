@@ -28,7 +28,6 @@ const App = _ => {
     return(
         <>
             <Header title={'FirstRocket'} />
-
             <img src={backgroundImage} />
 
             {
